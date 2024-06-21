@@ -1,0 +1,33 @@
+---
+import ExperienceItem from "./ExperienceItem.astro"
+
+const EXPERIENCE = [
+    {
+        date: 'June 2024',
+        title: 'Application UI',
+        description: 'Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce && Marketing pages.',
+        link: '#',
+    },
+    {
+        date: 'June 2024',
+        title: 'Application UI 1',
+        description: 'Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce && Marketing pages.',
+        link: '#',
+    },
+    {
+        date: 'June 2024',
+        title: 'Application UI 2',
+        description: 'Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce && Marketing pages.',
+    },
+]
+---
+
+<ol class="relative border-s border-gray-200 dark:border-gray-700">
+    {
+        EXPERIENCE.map((experience) => (
+            <li class="mb-10 ms-4">
+                <ExperienceItem {...experience} />
+            </li>
+        ))
+    }
+</ol>

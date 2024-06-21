@@ -1,0 +1,80 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import Badge from "../components/Badge.astro";
+import LinkedIn from "../icons/LinkedIn.astro";
+import Github from "../icons/Github.astro";
+import Mail from "../icons/Mail.astro";
+import SocialPill from "../components/SocialPill.astro";
+import Experience from "../components/Experience.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+import BriefCase from "../icons/BriefCase.astro";
+import Code from "../icons/Code.astro";
+import Projects from "../components/Projects.astro";
+---
+
+<Layout
+	title="Porfolio de Johann Bonilla - Desarrollador y Programador Web con 2 anos de experiencia en el area pero sin experiencia laboral"
+	description="Contrata a Johann para crear tu aplicacion web o mobil. Desarrollador Web y Estudiante de Desarrollo de Software."
+>
+	<main class="px-4">
+		<SectionContainer class="py-44 pb-32" id="top">
+			<img
+				class="rounded-full size-12 object-cover mb-2"
+				src="/img/photo_profile_1.webp"
+				alt="Johann Photo"
+			/>
+			<h1
+				class="text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10"
+			>
+				Hey, soy Johann Bonilla <Badge>Disponible para trabajar</Badge>
+			</h1>
+			<h2 class="text-xl lg:text-3xl text-wrap max-w-[700px]">
+				<span
+					>+2 anos de experiancia en desarrollo de software pero sin
+					experiencia laboral.</span
+				>
+				<span class="text-yellow-200/90">
+					Desarrollador Web y Estudiante de Desarrollo de Software.</span
+				>
+				<span class="text-red-100/90"> De Popayan, Colombia.</span>
+				<span class="opacity-75"
+					>Especializado en crear aplicaciones unicas.</span
+				>
+			</h2>
+
+			<nav class="flex gap-4 mt-8 flex-wrap">
+				<SocialPill
+					href="https://www.linkedin.com/in/johann-bonilla-bolivar"
+				>
+					<LinkedIn class="size-4 md:size-6" />
+					LinkedIn
+				</SocialPill>
+				<SocialPill href="https://www.github.com/JohannBonillaBolivar">
+					<Github class="size-4 md:size-6" />
+					Github
+				</SocialPill>
+				<SocialPill href="mailto:johannbb0508@gmail.com">
+					<Mail class="size-4 md:size-6" />
+					johannbb0508@gmail.com
+				</SocialPill>
+			</nav>
+		</SectionContainer>
+
+		<SectionContainer id="experience">
+			<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+				<BriefCase class="size-7" />
+				Experiencia laboral
+			</h2>
+			<Experience />
+		</SectionContainer>
+
+		<SectionContainer id="projects">
+			<h2 class="text-2xl font-semibold mb-6 flex gap-x-3 items-center">
+				<Code class="size-7" />
+				Experiencia laboral
+			</h2>
+			<Projects />
+		</SectionContainer>
+	</main>
+</Layout>
