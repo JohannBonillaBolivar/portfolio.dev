@@ -1,10 +1,110 @@
-<header class="flex justify-center items-center py-5 w-full xl:w-[1120px] mx-auto">
+---
+import ThemeToggle from "./ThemeToggle.astro";
 
-    <nav class="flex flex-row gap-x-10 opacity-80">
-        <a href="#top">Inicio</a>
-        <a href="#experience">Experiencia</a>
-        <a href="#project">Proyectos</a>
-        <a href="#about">Sobre mi</a>
-        <a href="#Contact">Contacto</a>
+const navItems = [
+    // {
+    //     title: "Inicio",
+    //     label: "inicio",
+    //     url: "/#top",
+    // },
+    {
+        title: "Experiencia",
+        label: "experiencia",
+        url: "/#experience",
+    },
+    {
+        title: "Proyectos",
+        label: "proyectos",
+        url: "/#projects",
+    },
+    { 
+        title: "Sobre mí",
+        label: "sobre-mi",
+        url: "/#sobre-mi",
+    },
+    {
+        title: "Contacto",
+        label: "contacto",
+        url: "mailto:johannbb0508@gmail.com",
+    },
+];
+---
+
+<header
+    class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto"
+>
+    <nav
+        class="flex w-full py-1 text-base font-semibold rounded-b-2xl text-gray-600 dark:text-gray-200 justify-center items-center "
+    >
+        {
+            navItems.map((link) => (
+                <a
+                    class="relative block px-5 py-3 transition hover:text-lime-500 dark:hover:text-lime-300"
+                    aria-label={link.label}
+                    href={link.url}
+                >
+                    {link.title}
+                </a>
+            ))
+        }
+        <ThemeToggle />
     </nav>
 </header>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        const sections = document.querySelectorAll("section");
+        const navItems = document.querySelectorAll("header nav a");
+
+        const callback = (entries: any[]) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    navItems.forEach((item) => {
+                        if (
+                            item.getAttribute("aria-label") == entry.target.id
+                        ) {
+                            item.classList.add("text-yellow-500");
+                        } else {
+                            item.classList.remove("text-yellow-500");
+                        }
+                    });
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(callback, {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.3,
+        });
+
+        sections.forEach((section) => {
+            observer.observe(section);
+        });
+
+        // Cleanup function
+        document.onvisibilitychange = () => {
+            if (document.visibilityState === "hidden") {
+                observer.disconnect();
+            } else {
+                sections.forEach((section) => {
+                    observer.observe(section);
+                });
+            }
+        };
+    });
+</script>
+
+<style>
+    nav {
+        animation: nav-shadown 1s linear both;
+        animation-timeline: scroll();
+        animation-range: 0 100px;
+    }
+
+    @keyframes nav-shadown {
+        to {
+            @apply backdrop-blur;
+        }
+    }
+</style>

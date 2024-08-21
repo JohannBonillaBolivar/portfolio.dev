@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import "@fontsource-variable/onest";
@@ -20,12 +21,24 @@ const { description, title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ViewTransitions />
 	</head>
-	<body>
+	<body class="relative text-black dark:text-white">
+		<!-- <div
+			class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-white bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))] dark:bg-neutral-950 dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+		>
+		</div> -->
+		<!-- <div
+			class="absolute bottom-0 z-[-2] left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]"
+		>
+		</div> -->
+
 		<div
-			class="absolute top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+			class="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] dark:bg-gray-900 dark:[background:radial-gradient(125%_125%_at_50%_10%,#191727_40%,#216_100%)]"
 		>
 		</div>
+
+		<!-- <div class="absolute top-0 z-[-2] h-screen w-screen"></div> -->
 		<Header />
 		<slot />
 		<Footer />
@@ -46,6 +59,7 @@ const { description, title } = Astro.props;
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
+		overscroll-behavior: none;
 	}
 
 	@media (prefers-reduced-motion: reduce) {

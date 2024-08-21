@@ -1,5 +1,10 @@
 ---
-import TailwindCSS from "../icons/TailwindCSS.astro";
+import TailwindCSS from "../icons/tags/TailwindCSS.astro";
+import JavaScript from "../icons/tags/JavaScript.astro";
+import AstroIcon from "../icons/tags/AstroIcon.astro";
+import LinkButton from "./LinkButton.astro";
+import Github from "@/icons/Github.astro";
+import Link from "@/icons/Link.astro";
 
 const TAGS = {
     TAILWIND: {
@@ -7,42 +12,82 @@ const TAGS = {
         class: "bg-[#003159] text-white",
         icon: TailwindCSS,
     },
+    ASTRO: {
+        name: "Astro",
+        class: "bg-[#404040] text-white",
+        icon: AstroIcon,
+    },
+    REACT: {
+        name: "React JS",
+        class: "bg-[#003159] text-white",
+        icon: TailwindCSS,
+    },
+    JAVASCRIPT: {
+        name: "JavaScript",
+        class: "bg-[#5a4a1a] text-white",
+        icon: JavaScript,
+    },
+    TYPESCRIPT: {
+        name: "TypeScript",
+        class: "bg-[#003159] text-white",
+        icon: TailwindCSS,
+    },
 };
 
 const PROJECTS = [
     {
-        title: "Project 1",
+        title: "Spotify Clone",
         description: "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         link: "#",
-        github: "#",
-        image: "https://via.placeholder.com/300x200",
-        tags: [TAGS.TAILWIND],
+        github: "https://github.com/JohannBonillaBolivar/spotify-clone",
+        image: "/img/projects/project_1.png",
+        tags: [TAGS.TAILWIND, TAGS.ASTRO, TAGS.JAVASCRIPT],
     },
 ];
 ---
 
-{
-    PROJECTS.map(({ image, title, description, tags }) => (
-        <article>
-            <h1 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h1>
-            <p class="text-lg mb-4 text-pretty">{description}</p>
-            <ul class="flex gap-x-2 flex-row mb-2">
-                {tags.map((tag) => (
-                    <li>
-                        <span
-                            class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}
-                        >
-                            <tag.icon class="size-4" />
-                            {tag.name}
-                        </span>
-                    </li>
-                ))}
-            </ul>
-            <img
-                class="rounded shadow-2xl shadow-white/10"
-                src={image}
-                alt={`Captura de pantalla del proyecto ${image}`}
-            />
-        </article>
-    ))
-}
+<section class="flex flex-col gap-y-16">
+    {
+        PROJECTS.map(({ image, title, description, tags, link, github }) => (
+            <article class="ml-4">
+                <h1 class="text-2xl font-semibold text-lime-500 dark:text-lime-300 mb-2">
+                    {title}
+                </h1>
+                <p class="text-lg mb-4 text-pretty">{description}</p>
+                <ul class="flex gap-x-2 flex-row mb-2">
+                    {tags.map((tag) => (
+                        <li>
+                            <span
+                                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}
+                            >
+                                <tag.icon class="size-4" />
+                                {tag.name}
+                            </span>
+                        </li>
+                    ))}
+                </ul>
+                <div class="relative rounded group">
+                    <img
+                        class="rounded shadow-2xl shadow-white/10 group-hover:-rotate-2 group-hover:scale-100 transition-transform"
+                        src={image}
+                        alt={`Captura de pantalla del proyecto ${image}`}
+                    />
+                    <div class="absolute top-0 left-0 rounded h-full w-full bg-indigo-900/10 scale-0 backdrop-blur shadow-md shadow-black group-hover:scale-95 transition-transform group-hover:rotate-2">
+                        <footer class="flex h-full gap-x-4 mt-4 justify-center items-center">
+                            {github && (
+                                <LinkButton href={github}>
+                                    <Github class="size-6" />
+                                    Ver codigo fuente
+                                </LinkButton>
+                            )}
+                            <LinkButton href={link}>
+                                <Link class="size-6" />
+                                Ir al sitio web
+                            </LinkButton>
+                        </footer>
+                    </div>
+                </div>
+            </article>
+        ))
+    }
+</section>
